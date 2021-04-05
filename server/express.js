@@ -7,12 +7,15 @@ import cors from 'cors'
 // Import routes
 import userRoutes from './routes/user.routes'
 import authRoutes from './routes/auth.routes'
-
-// import devBundle from './devBundle'
+// devBundle bundles the frontend code and renders it
+import devBundle from './devBundle'
+import path from 'path'
+// Import front end file
+import Template from '../template'
 
 const app = express();
 
-// devBundle.compile(app)
+devBundle.compile(app)
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -21,9 +24,16 @@ app.use(helmet());
 app.use(compress());
 app.use(cors())
 
+const CURRENT_WORKING_DIR = process.cwd()
+app.use('/dist', express.static(path.join(CURRENT_WORKING_DIR, 'dist')))
+
 // Routes
 app.use('/',userRoutes)
 app.use('/', authRoutes)
+
+app.use('*', (req, res) => {
+    res.status(200).send(Template())
+})
 
 // Authorization error
 app.use((err, req, res, next) => {
