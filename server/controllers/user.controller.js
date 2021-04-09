@@ -31,9 +31,9 @@ const list = async (req, res) => {
 }
 
 // Get user by id and save it into profile header of all the requests
-const userById = async (req, res, id, next) => {
+const userById = async (req, res, next) => {
     try {
-        let user = await User.findById(id)
+        let user = await User.findById(req.params.userId)
         if(!user) {
             return res.status(400).json({
                 error: 'Could not retrieve user..!'

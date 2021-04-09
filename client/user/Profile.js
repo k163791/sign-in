@@ -25,16 +25,36 @@ export default function Profile({ match }) {
             abortController.abort()
         }
 
-    }, [match.params.userId])
+    }, [match.params.userId])   
 
 
     if(redirectToSignin) {
         return (<Redirect to='/signin'/>)
     }
 
+
     return(
-        <div>
-            
+        <div className="card">
+            <div className="card-header">
+                <h6>Profile</h6>
+            </div>
+            <div className="card-body">
+                <strong>Name: </strong><p>{user.name}</p>
+                <br/>
+                <strong>Email: </strong><p>{user.email}</p>
+                <br />
+                <strong>Joined: </strong><p>{user.created}</p>
+                <br/>
+                {
+                    auth.isAuthenticated().user && auth.isAuthenticated().user._id == user._id && (
+                        <div>
+                            <a href={'/user/edit/' + user._id}>Edit</a>
+                            <br />
+                            <a href={'/user/delete/' + user._id}>Delete</a>
+                        </div>
+                    )
+                }
+            </div>
         </div>
     )
 }
