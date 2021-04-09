@@ -1,5 +1,6 @@
 import React from 'react'
 import unicornBikeImg from './../assets/images/unicornbike.jpg'
+import { Link } from 'react-router-dom'
 
 export default function Home(){
     return(
@@ -14,6 +15,11 @@ export default function Home(){
                     src={unicornBikeImg}
                 />
                 <p className="font-weight-bold">Welcome to home</p>
+                <Link to="/users">Users</Link>
+                <br/>
+                <Link to="/signup">Signup</Link>
+                <br/>
+                <Link to="/signin"></Link>
             </div>
         </div>
     )
