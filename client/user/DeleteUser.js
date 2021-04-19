@@ -2,8 +2,7 @@ import React, { useState } from 'react'
 import { Redirect } from 'react-router'
 import auth from '../auth/auth-helper'
 import { remove } from './api-user'
-
-
+import PropTypes from 'prop-types'
 
 export default function DeleteUser(props) {
 
@@ -37,19 +36,39 @@ export default function DeleteUser(props) {
     }
 
     return(
-        <div className="row">
-            <button
-                className="btn btn-danger"
-                onClick={deleteAccount}
-            >
-                Delete account
-            </button>
-            <button
-                className="btn btn-default"
-                onClick={clickButton}
-            >
-                Cancel
-            </button>
+        <div className="row justify-content-around">
+            {
+                !open ?
+                (
+                    <button
+                        className="btn btn-danger"
+                        onClick={deleteAccount}
+                    >
+                        Delete account
+                    </button>
+                ): null
+            }
+
+            {
+                open ? 
+                (
+                    <div className="text-center">
+                        Are you sure ?
+                        <div className="row justify-content-around">
+                            <button className="btn btn-sm btn-danger">
+                                Delete
+                            </button>
+                            <button className="btn btn-sm btn-default">
+                                Cancel
+                            </button>
+                        </div>
+                    </div>
+                ): null
+            }
         </div>
     )
+}
+
+DeleteUser.propTypes = {
+    userId: PropTypes.string.isRequired
 }

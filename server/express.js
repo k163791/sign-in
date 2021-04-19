@@ -4,6 +4,11 @@ import compress from 'compression'
 import bodyParser from 'body-parser'
 import cookieParser from 'cookie-parser'
 import cors from 'cors'
+import React from 'react'
+import ReactDOMServer from 'react-dom/server'
+import StaticRouter from 'react-router-dom/StaticRouter'
+import MainRouter from '../client/MainRouter'
+
 // Import routes
 import userRoutes from './routes/user.routes'
 import authRoutes from './routes/auth.routes'

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { Redirect } from 'react-router'
 import auth from '../auth/auth-helper'
 import { read } from './api-user'
+import DeleteUser from './DeleteUser'
 
 export default function Profile({ match }) {
 
@@ -50,7 +51,8 @@ export default function Profile({ match }) {
                         <div>
                             <a href={'/user/edit/' + user._id}>Edit</a>
                             <br />
-                            <a href={'/user/delete/' + user._id}>Delete</a>
+                            {/* <a href={'/user/delete/' + user._id}>Delete</a> */}
+                            <DeleteUser userId={user._id} />
                         </div>
                     )
                 }
